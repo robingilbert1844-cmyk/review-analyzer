@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Sentiment & Theme Analysis Dashboard</title>
+    <style>
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #f0f2f5; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .dashboard-card { background: #ffffff; width: 100%; max-width: 680px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 36px; }
+        h1 { margin: 0 0 6px 0; font-size: 22px; color: #1a365d; }
+        p.subtitle { margin: 0 0 24px 0; color: #718096; font-size: 14px; }
+        label { font-weight: 600; font-size: 14px; color: #2d3748; display: block; margin-bottom: 8px; }
+        textarea { width: 100%; height: 130px; border: 1.5px solid #cbd5e0; border-radius: 8px; padding: 14px; font-size: 15px; outline: none; transition: border-color 0.2s; }
+        textarea:focus { border-color: #3182ce; }
+        button { margin-top: 14px; width: 100%; padding: 13px; background: #2b6cb0; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #2c5282; }
+        .result-panel { margin-top: 24px; padding: 20px; border-radius: 8px; text-align: center; }
+        .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 16px; text-transform: uppercase; }
+        .Positive { background: #def7ec; color: #03543f; border: 1px solid #bcf0da; }
+        .Negative { background: #fde8e8; color: #9b1c1c; border: 1px solid #f8b4b4; }
+        .Neutral  { background: #fef08a; color: #713f12; border: 1px solid #fde047; }
+        .theme-box { margin-top: 14px; font-size: 14px; color: #742a2a; background: #fff5f5; border: 1px dashed #feb2b2; padding: 10px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-card">
+        <h1>Customer Review Sentiment & Theme Analyzer</h1>
+        <p class="subtitle">Operational NLP intelligence for Flipkart customer feedback</p>
+
+        <form method="POST">
+            <label for="review_text">Enter Review Text</label>
+            <textarea id="review_text" name="review_text" placeholder="Paste feedback (e.g., 'Worst quality product, broke in two days. Do not buy!')..." required>{{ review_text }}</textarea>
+            <button type="submit">Analyze Feedback</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-panel {{ prediction }}">
+                <div>Identified Sentiment: <span class="badge {{ prediction }}">{{ prediction }}</span></div>
+                {% if complaint_theme %}
+                    <div class="theme-box">
+                        <strong>Operational Complaint Theme:</strong> {{ complaint_theme }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

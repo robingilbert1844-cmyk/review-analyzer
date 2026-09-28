@@ -1,0 +1,34 @@
+# Python environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Datasets / Large CSV files
+data/
+*.csv
+
+# Large deep learning models & weights
+models/distilbert_sentiment_model/
+*.safetensors
+*.bin
+*.h5
+*.pt
+*.pth
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environment variables & secrets
+.env
+*.log
